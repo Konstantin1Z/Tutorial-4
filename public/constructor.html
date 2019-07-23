@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+    <title>Дз к уроку 4. - Конструктор</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+<!-- <script type="text/javascript" src="script.js"></script>
+ -->    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+     
+<!-- <div id="x" onclick="add()" style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;"></div> -->
+ <div id="y" onclick="upd()"></div><!-- style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;" -->
+<!--<div id="z" onclick="get()" style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;"></div> -->
+
+<center><a class="aa" href="index.html"><div class="ss">Главная</div></a></center>
+
+<h1 align="center">Новый работник</h1>
+<div class="form">
+<form id="form"><!-- onsubmit="sssave()"  -->
+  <table>
+<tr><td>Должность:</td>
+<td><select name="dolg" id="dolg">
+    <option value="0">Сторож</option>
+    <option value="1">Рабочий</option>
+    <option value="2">Уборщик</option>
+    <option value="3">Грузчик</option>
+    <option value="4">Охранник</option>
+    <option value="5">Инженер</option>
+    <option value="6">Технолог</option>
+    <option value="7">Водитель</option>
+    <option value="8">Вахтёр</option>
+    <option value="9">Системный администратор</option>
+    <option value="10">Начальник транспортного цеха</option>
+  </select></td><td><!-- <input style="display: none;" type="text" id="xxx" name="xxx" placeholder=""> -->
+
+<div id="coment" style="display: inline;"></div>
+
+<select name="xxx" id="xxx" style="display: none;">
+    <option value="0">-</option>
+    <option value="1">A</option>
+    <option value="2">B</option>
+    <option value="3">C</option>
+    <option value="4">D</option>
+    <option value="5">E</option>
+    <option value="6">Все</option>
+  </select>
+
+  <select name="xxx1" id="xxx1" style="display: none;">
+    <option value="0">-</option>
+    <option value="1">Сварщик</option>
+    <option value="2">Плиточник</option>
+    <option value="3">Штукотур</option>
+    <option value="4">Каменщик</option>
+    <option value="5">Плотник</option>
+    <option value="6">Столяр</option>
+    <option value="7">Разнорабочий</option>
+    <option value="8">Электрик</option>
+    <option value="9">Нивилировщик</option>
+    <option value="10">Кровельщик</option>
+    <option value="11">Арматурщик</option>
+  </select>
+
+  <select name="xxx2" id="xxx2" style="display: none;">
+    <option value="0">-</option>
+    <option value="1">Да</option>
+    <option value="2">Нет</option>
+  </select>
+
+<select name="xxx3" id="xxx3" style="display: none;">
+    <option value="0">-</option>
+    <option value="1">JavaScript</option>
+    <option value="2">Java</option>
+    <option value="3">Pithon</option>
+    <option value="4">C++</option>
+    <option value="5">SQL</option>
+    <option value="6">C#</option>
+    <option value="7">Assambler</option>
+    <option value="8">PHP</option>
+    <option value="9">Kotlin</option>
+    <option value="10">Ruby</option>
+    <option value="11">Ничего не знаю</option>
+  </select>
+
+
+<tr><td>Фамилия:</td> <td><input type="text" id="fam" name="fam" required placeholder="Фамилия" pattern="^[А-Яа-яЁё\s]+$"></td></tr>  <!-- required -->
+<tr><td>Имя:</td> <td><input type="text" id="im" name="im" required placeholder="Имя" pattern="^[А-Яа-яЁё\s]+$"></td></tr>
+<tr><td>Отчество:</td> <td><input type="text" id="otch" name="otch"  placeholder="Отчество" pattern="^[А-Яа-яЁё\s]+$"></td></tr>
+<tr><td>Пол:</td> <td>
+<select name="sex" id="sex">
+    <option value="0">М</option>
+    <option value="1">Ж</option>
+  </select>
+  <!-- <input type="text" id="otch" name="otch"  placeholder="Отчество"> --></td></tr>
+<tr><td>Дата рождения:</td> <td><input type="date" id="date" name="date"  placeholder="Дата рождения"></td></tr>
+<tr><td>Наличие детей:</td> <td><input type="checkBox" id="child" name="child"></td><td><input style="display: none;" type="number" id="KolDet" name="KolDet" min="0" max="10" placeholder="Сколько"></td></tr>
+<tr><td>Стаж:</td> <td><input type="number" id="staj" name="staj" required  placeholder="Стаж" pattern="[0-9]"></td></tr>
+<tr><td>Образование:</td> <td><select name="educat" id="educat">
+    <option value="0">Базовое</option>
+    <option value="1">Среднее</option>
+    <option value="2">Высшее</option>
+  </select></td></tr>
+<tr><td>Адрес:</td> <td><input type="text" id="address" required name="address"  placeholder="Адрес:"></td></tr>
+<tr><td>Телефон:</td> <td><input type="tel" id="tel" name="tel" required pattern="[\+]\d{3}\d{2}\d{3}\d{2}\d{2}" minlength="13" maxlength="13" placeholder="Телефон"></td></tr>
+<tr><td>E-mail:</td> <td><input type="email" id="mail" name="mail" placeholder="E-mail"></td></tr>
+<tr><td>Наличие автомобиля:</td> <td><input type="checkBox" id="auto" name="auto"></td><td><input style="display: none;" type="text" id="Wauto" name="Wauto"  placeholder="Какое авто"></td></tr>
+<tr><td>Заработная плата</td> <td><input type="number" id="zp" name="zp" required placeholder="Зарплата" pattern="[0-9]"></td></tr>
+
+</table>
+<center><div id="error"></div>
+<button type="submit" id="save" onclick="sssave()">Сохранить</button >  <button type="reset">Очистить</button></center>
+<!-- onclick="event.preventDefault()" -->
+  
+</form>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+
+$('#dolg').change(function(){
+if (document.getElementById('dolg').options[document.getElementById('dolg').selectedIndex].text=="Водитель") 
+{
+$("#xxx").show();
+$("#coment").text("Категория");
+
+ $("#xxx1").hide();
+document.getElementById('xxx1').value=""
+$("#xxx2").hide();
+document.getElementById('xxx2').value=""
+$("#xxx3").hide();
+document.getElementById('xxx3').value=""
+}
+
+else if(document.getElementById('dolg').options[document.getElementById('dolg').selectedIndex].text=="Рабочий")
+{
+  $("#xxx1").show();
+$("#coment").text("Специальность");
+
+ $("#xxx").hide();
+document.getElementById('xxx').value=""
+$("#xxx2").hide();
+document.getElementById('xxx2').value=""
+$("#xxx3").hide();
+document.getElementById('xxx3').value=""
+}
+      
+else if(document.getElementById('dolg').options[document.getElementById('dolg').selectedIndex].text=="Охранник")
+{
+$("#xxx2").show();
+$("#coment").text("Служба в армии");
+
+ $("#xxx").hide();
+document.getElementById('xxx').value=""
+$("#xxx1").hide();
+document.getElementById('xxx1').value=""
+$("#xxx3").hide();
+document.getElementById('xxx3').value=""
+}
+else if(document.getElementById('dolg').options[document.getElementById('dolg').selectedIndex].text=="Системный администратор")
+{
+$("#xxx3").show();
+$("#coment").text("Знание ЯП");
+
+ $("#xxx").hide();
+document.getElementById('xxx').value=""
+$("#xxx1").hide();
+document.getElementById('xxx1').value=""
+$("#xxx2").hide();
+document.getElementById('xxx2').value=""
+
+
+}
+else
+  {
+        $("#xxx").hide();
+        document.getElementById('xxx').value=""
+        $("#xxx1").hide();
+        document.getElementById('xxx1').value=""
+        $("#xxx2").hide();
+        document.getElementById('xxx2').value=""
+        $("#xxx3").hide();
+        document.getElementById('xxx3').value=""
+        $("#coment").text("");
+  }
+
+});
+
+/////////////////////////////////////////////////////
+$('#child').change(function()
+{
+    if(this.checked!=true)
+    {
+          $("#KolDet").hide();
+          $("#KolDet").val("");
+    }
+  else
+  {
+        $("#KolDet").show();
+  }
+});
+/////////////////////////////////////////////////////
+$('#auto').change(function()
+{
+    if(this.checked!=true)
+    {
+          $("#Wauto").hide();
+          $("#Wauto").val("");
+    }
+  else
+  {
+        $("#Wauto").show();
+  }
+});
+
+
+
+
+function upd()
+{
+//document.getElementById("x").style.display="none";
+var mas=[];
+
+
+$('#form').submit(function(event){
+  
+    if(this.checkValidity())
+    {
+
+
+//------- вычисляем количество лет--------------------------------------------
+var a = new Date(document.getElementById("date").value);
+var b = new Date();
+
+    var age = b.getFullYear() - a.getFullYear();
+    var m = b.getMonth() - a.getMonth();
+    if (m < 0 || (m === 0 && b.getDate() < a.getDate())) 
+    {
+        age--;
+    }
+    //return age;
+
+//------- Считываем буливые значения чекбоксов и переводим в нормальные слова---------
+// Дети
+var c=document.getElementById("child").checked;
+if(c==true)
+c="Есть";
+else
+c="Нет";
+// Авто
+var d=document.getElementById("auto").checked;
+if(d==true)
+d="Есть";
+else
+d="Нет";
+
+/////////////////////////////////////////////////////////////////////////////////////
+//var spec;
+//if (document.getElementById('xxx').options[document.getElementById('xxx').selectedIndex].text.length==0) {spec="-";}
+
+
+
+// object
+
+function rabotnik(dolg, family, name, otch, sex, age, child, staj, educat, address, phone, mail, auto, Kauto, Wauto, KolDet, Army, rabSpec, AdminLang, zp)
+    {
+      this.dolg = dolg;
+      this.family = family;
+      this.name = name;
+      this.otch = otch;
+      this.sex = sex;
+    this.age=age;
+    this.child=child;
+    this.staj=staj;
+    this.educat=educat;
+    this.address = address;
+    this.phone = phone;
+    this.mail=mail;    
+      this.auto=auto;
+
+      this.Kauto=Kauto;
+      this.Wauto=Wauto;
+      this.KolDet=KolDet;
+      this.Army=Army;
+      this.rabSpec=rabSpec;
+      this.AdminLang=AdminLang;
+      this.zp=zp;
+
+this.getDolg = function(){return this.dolg;}  
+this.getFamily = function(){return this.family;}
+this.getName = function(){return this.name;}
+this.getOtch = function(){return this.otch;}
+this.getsex = function(){return this.sex;}
+this.getAge = function(){return this.age;}
+this.getChild = function(){return this.child;}
+this.getStaj = function(){return this.staj;}
+this.getEducat = function(){return this.educat;}
+this.getAddress = function(){return this.address;}
+this.getPhone = function(){return this.phone;}
+this.getMail = function(){return this.mail;}
+this.getAuto = function(){return this.auto;}
+
+      this.getKauto=function(){return this.Kauto;}
+      this.getWauto=function(){return this.Wauto;}
+      this.getKolDet=function(){return this.KolDet;}
+      this.getArmy=function(){return this.Army;}
+      this.getrabSpec=function(){return this.rabSpec;}
+      this.getAdminLang=function(){return this.AdminLang;}
+      this.getzp=function(){return this.zp;}
+
+    }
+
+var noviRabotnik = new rabotnik(
+  document.getElementById('dolg').options[document.getElementById('dolg').selectedIndex].text, 
+  document.getElementById("fam").value, 
+  document.getElementById("im").value, 
+  document.getElementById("otch").value,
+  document.getElementById('sex').options[document.getElementById('sex').selectedIndex].text,
+  age, 
+  c, 
+  document.getElementById("staj").value, 
+  document.getElementById('educat').options[document.getElementById('educat').selectedIndex].text, 
+  document.getElementById("address").value, 
+  document.getElementById("tel").value,
+  document.getElementById("mail").value, 
+  d, 
+  document.getElementById('xxx').options[document.getElementById('xxx').selectedIndex].text, 
+  document.getElementById("Wauto").value,
+  document.getElementById("KolDet").value, 
+  document.getElementById('xxx2').options[document.getElementById('xxx2').selectedIndex].text, 
+  document.getElementById('xxx1').options[document.getElementById('xxx1').selectedIndex].text, 
+  document.getElementById('xxx3').options[document.getElementById('xxx3').selectedIndex].text,
+  document.getElementById("zp").value);
+
+mas.push(noviRabotnik);  
+
+var x=document.getElementById("x");
+//x.innerHTML=mas[0].AdminLang;
+//x.innerHTML=noviRabotnik.dolg;
+
+$.ajax('/worker', {
+  type: "POST",
+  contentType: "application/json",
+  data: JSON.stringify({
+    username: noviRabotnik.name,
+    password: noviRabotnik.name,
+    Dolg: noviRabotnik.dolg,
+Familia: noviRabotnik.family,
+Name: noviRabotnik.name,
+Otchestvo: noviRabotnik.otch,
+sex: noviRabotnik.sex,
+Age: noviRabotnik.age,
+Childrens: noviRabotnik.child,
+Staj: noviRabotnik.staj,
+Education: noviRabotnik.educat,
+Adress: noviRabotnik.address,
+Phone: noviRabotnik.phone,
+Mail: noviRabotnik.mail,
+Auto: noviRabotnik.auto,
+Kauto: noviRabotnik.Kauto,
+KolDet: noviRabotnik.KolDet,
+Army: noviRabotnik.Army,
+rabSpec: noviRabotnik.rabSpec,
+AdminLang: noviRabotnik.AdminLang,
+Wauto: noviRabotnik.Wauto,
+Zp: noviRabotnik.zp,
+
+  }),
+  success: function(workerxxx) {
+    // Do something
+    alert("Запись успешно добавдена");
+  }, 
+  error: function(xhr) {
+    alert(xhr.responseText);
+  }
+});
+
+}});//
+
+// location.replace("constructor.html");
+}
+
+	
+// function add()
+// {
+
+// // var x=document.getElementById("x");
+// // x.style.width="300px";
+
+// $.ajax('/worker', {
+//   type: "POST",
+//   contentType: "application/json",
+//   data: JSON.stringify({
+//   	username: document.getElementById('im').value,//"Lavrentiy",
+//   	password: document.getElementById('im').value,
+//     Familia: document.getElementById('fam').value,
+
+//   }),
+//   success: function(workerxxx) {
+//     // Do something
+//   }, 
+//   error: function(xhr) {
+//     alert(xhr.responseText);
+//   }
+// });
+
+
+// }
+function sssave()
+{
+var y=document.getElementById("y");
+y.click();
+}
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

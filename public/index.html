@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+    <title>Дз к уроку 4. - Главная</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+<script type="text/javascript" src="script.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+     
+<div id="x" onclick="add()" ></div><!-- style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;" -->
+<!-- <div id="y" onclick="upd()" style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;"></div>
+<div id="z" onclick="get()" style="width: 200px; height: 200px; border: 1px solid black; display: inline-block;"></div> -->
+
+<center><a class="aa" href="constructor.html"><div class="ss">Создать</div></a></center>
+
+<center><table id="t" border="1" class="table_blur"></table></center>
+
+
+
+<script type="text/javascript">
+  
+//Обработка нажатия кнопок      document.querySelector('#t')
+document.getElementById("t").addEventListener('click', function(e){ 
+var id = e.target.id; // Получили ID, т.к. в e.target содержится элемент по которому кликнули
+var ida = id.substring(0, 3); 
+
+console.log(ida);
+if (ida=="del") // Удалить
+{
+
+var str = id.substring(3, id.length);
+
+//$.ajax('http://localhost:2403/worker/' + id_mas[str] , {
+  $.ajax('http://localhost:2403/worker/' + id_mas[str] + '?_method=DELETE' , {
+  type: "POST",
+  //contentType: "application/json",
+  //data: { _method:"DELETE" },
+  success: function(workerxxx) {
+    //alert("Запись успешно удалена");
+  }, 
+  error: function(xhr) {
+    alert(xhr.responseText);
+  }
+});
+
+location.replace("index.html");  
+
+}
+
+
+if (ida=="red") // Редактировать
+{
+  var str = id.substring(3, id.length);
+localStorage.setItem('idRec', str);
+//document.querySelector('#z').innerHTML = id_mas[0];
+localStorage.setItem('id',JSON.stringify(id_mas[str]));
+location.replace("redact.html");
+
+}
+
+if (ida=="det") // Подробнее
+{
+var str = id.substring(3, id.length);
+localStorage.setItem('idRec', str);
+//document.querySelector('#z').innerHTML = id_mas[0];
+localStorage.setItem('id',JSON.stringify(id_mas[str]));
+location.replace("details.html");
+
+}
+
+});
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
