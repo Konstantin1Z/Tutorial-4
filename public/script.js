@@ -1,12 +1,12 @@
-// var ourData;
+ var ourData;
 id_mas=[];
 window.onload = function()
 {
 //alert("Hello");
 var j=document.getElementById("x");
 j.click();
-alert("Добро пожаловать на главную страницу");
-j.click();
+// alert("Добро пожаловать на главную страницу");
+// j.click();
 }
 
 
@@ -16,7 +16,7 @@ var j=document.getElementById("x");
 var g=document.getElementById("y");
 
 var request = new XMLHttpRequest();
-request.open('GET','http://localhost:2403/worker');
+request.open('GET','http://localhost:2403/worker', false);
 request.onload = function() {
 ourData = request.responseText;
 ourData = JSON.parse(ourData);
@@ -31,43 +31,43 @@ request.send();
 
 //alert(g.textContent);
 
-if (parseInt(j.textContent) != 0) 
-{
+//if (parseInt(j.textContent) != 0) 
+//{
 
-j.style.color="green";
+//j.style.color="green";
 
 var stroka0 = document.createElement('tr');
 var stolbb0 = document.createElement('td');
-stolbb0.innerHTML="№";
+stolbb0.innerHTML="<b>№</b>";
 
 var stolbb1 = document.createElement('td');
-stolbb1.innerHTML="Должность";
+stolbb1.innerHTML="<b>Должность</b>";
 var stolbb2 = document.createElement('td');
-stolbb2.innerHTML="Фамилия";
+stolbb2.innerHTML="<b>Фамилия</b>";
 var stolbb3 = document.createElement('td');
-stolbb3.innerHTML="Имя";
+stolbb3.innerHTML="<b>Имя</b>";
  var stolbb4 = document.createElement('td');
- stolbb4.innerHTML="Отчество";
+ stolbb4.innerHTML="<b>Отчество</b>";
  var stolbb5 = document.createElement('td');
- stolbb5.innerHTML="Пол";
+ stolbb5.innerHTML="<b>Пол</b>";
  var stolbb6 = document.createElement('td');
- stolbb6.innerHTML="Возраст, лет";
+ stolbb6.innerHTML="<b>Возраст, лет</b>";
  var stolbb7 = document.createElement('td');
- stolbb7.innerHTML="Наличие детей";
+ stolbb7.innerHTML="<b>Наличие детей</b>";
  var stolbb8 = document.createElement('td');
- stolbb8.innerHTML="Общий трудовой стаж, лет";
+ stolbb8.innerHTML="<b>Общий трудовой стаж, лет</b>";
  var stolbb9 = document.createElement('td');
- stolbb9.innerHTML="Образование";
+ stolbb9.innerHTML="<b>Образование</b>";
  var stolbb10 = document.createElement('td');
- stolbb10.innerHTML="Адрес";
+ stolbb10.innerHTML="<b>Адрес</b>";
 var stolbb11 =document.createElement('td');
- stolbb11.innerHTML="Телефон";
+ stolbb11.innerHTML="<b>Телефон</b>";
  var stolbb12 =document.createElement('td');
- stolbb12.innerHTML="Е-маил";
+ stolbb12.innerHTML="<b>Е-маил</b>";
  var stolbb13 =document.createElement('td');
- stolbb13.innerHTML="Наличие автомобиля";
+ stolbb13.innerHTML="<b>Наличие автомобиля</b>";
  var stolbb14 = document.createElement('td');
- stolbb14.innerHTML="Примечание";
+ stolbb14.innerHTML="<b>Примечание</b>";
 
 document.getElementById("t").appendChild(stroka0);
 
@@ -144,8 +144,62 @@ id_mas[i]=ourData[i]["id"];
 
 }
 
-}
+//}
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("t").addEventListener('click', function(e){ 
+var id = e.target.id; // Получили ID, т.к. в e.target содержится элемент по которому кликнули
+var ida = id.substring(0, 3); 
+
+console.log(ida);
+if (ida=="del") // Удалить
+{
+
+var str = id.substring(3, id.length);
+
+$.ajax({
+  type : "POST",
+  url  : "http://localhost:2403/worker/" + id_mas[str] + "?_method=DELETE",
+  success: function(todo) {
+    alert("Запись успешно удалена");
+    location.replace("index.html");
+  }, 
+  error: function(xhr) {}
+});
+
+}
+
+
+if (ida=="red") // Редактировать
+{
+  var str = id.substring(3, id.length);
+localStorage.setItem('idRec', str);
+localStorage.setItem('id',JSON.stringify(id_mas[str]));
+location.replace("redact.html");
+
+}
+
+if (ida=="det") // Подробнее
+{
+var str = id.substring(3, id.length);
+localStorage.setItem('idRec', str);
+localStorage.setItem('id',JSON.stringify(id_mas[str]));
+location.replace("details.html");
+}
+
+});
